@@ -96,6 +96,9 @@ bool HelloWorld::init()
     
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("summer.mp3", true);
     
+    
+    
+    
     return true;
 }
 
