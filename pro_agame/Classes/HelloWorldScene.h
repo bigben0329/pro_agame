@@ -33,7 +33,10 @@ protected:
     cocos2d::CCLabelTTF* _pLabel;
     
     int _projectilesDestroyed;
+    int _projectilesMissed;
+    
 	void addTarget();
+    void updateResultMsg();
 };
 
 #endif // __HELLOWORLD_SCENE_H__

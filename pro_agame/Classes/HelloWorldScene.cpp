@@ -156,6 +156,8 @@ void HelloWorld::spriteMoveFinished(CCNode* sender)
 	if (sprite->getTag() == 1)  // target
 	{
 		_targets->removeObject(sprite);
+        _projectilesMissed++;
+        updateResultMsg();
         
         //		GameOverScene *gameOverScene = GameOverScene::create();
         //		gameOverScene->getLayer()->getLabel()->setString("You Lose :[");
@@ -275,7 +277,7 @@ void HelloWorld::updateGame(float dt)
 //				gameOverScene->getLayer()->getLabel()->setString("You Win!");
 //				CCDirector::sharedDirector()->replaceScene(gameOverScene);
 			}
-            _pLabel->setString("qwe");
+            updateResultMsg();
 		}
         
 		if (targetsToDelete->count() > 0)
@@ -299,4 +301,12 @@ void HelloWorld::registerWithTouchDispatcher()
 {
 	// CCTouchDispatcher::sharedDispatcher()->addTargetedDelegate(this,0,true);
     CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this,0);
+}
+
+void HelloWorld::updateResultMsg()
+{
+    char szResultStr[256] = {0};
+    snprintf(szResultStr, sizeof(szResultStr), "hit num %d miss num %d",
+             _projectilesDestroyed, _projectilesMissed);
+    _pLabel->setString(szResultStr);
 }
