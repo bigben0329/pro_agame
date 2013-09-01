@@ -17,6 +17,23 @@ public:
 
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(HelloWorld);
+    
+    void spriteMoveFinished(cocos2d::CCNode* sender);
+    
+	void gameLogic(float dt);
+	void updateGame(float dt);
+    
+	void registerWithTouchDispatcher();
+	void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
+    
+    
+protected:
+	cocos2d::CCArray *_targets;
+	cocos2d::CCArray *_projectiles;
+    cocos2d::CCLabelTTF* _pLabel;
+    
+    int _projectilesDestroyed;
+	void addTarget();
 };
 
 #endif // __HELLOWORLD_SCENE_H__
