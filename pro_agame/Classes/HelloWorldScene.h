@@ -19,7 +19,8 @@ public:
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(HelloWorld);
     
-    void spriteMoveFinished(cocos2d::CCNode* sender);
+    void targetMoveFinished(cocos2d::CCNode* sender);
+    void projectileMoveFinished(cocos2d::CCNode* sender);
     
 	void gameLogic(float dt);
 	void updateGame(float dt);

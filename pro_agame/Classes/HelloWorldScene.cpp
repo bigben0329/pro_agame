@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "GameOverScene.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -187,7 +188,7 @@ void HelloWorld::addTarget()
 	CCFiniteTimeAction* actionMove = CCMoveTo::create( (float)actualDuration,
                                                       ccp(0 - target->getContentSize().width/2, actualY) );
 	CCFiniteTimeAction* actionMoveDone = CCCallFuncN::create( this,
-                                                             callfuncN_selector(HelloWorld::spriteMoveFinished));
+                                                             callfuncN_selector(HelloWorld::targetMoveFinished));
 	target->runAction( CCSequence::create(actionMove, actionMoveDone, NULL) );
     
 	// Add to targets array
@@ -195,26 +196,35 @@ void HelloWorld::addTarget()
 	_targets->addObject(target);
 }
 
-void HelloWorld::spriteMoveFinished(CCNode* sender)
+void HelloWorld::targetMoveFinished(CCNode* sender)
 {
 	CCSprite *sprite = (CCSprite *)sender;
 	this->removeChild(sprite, true);
     
-	if (sprite->getTag() == 1)  // target
-	{
-		_targets->removeObject(sprite);
+    _targets->removeObject(sprite);
+    
+    if( 1 == sprite->getTag() )
+    {
         _projectilesMissed++;
         updateResultMsg();
-        
-        //		GameOverScene *gameOverScene = GameOverScene::create();
-        //		gameOverScene->getLayer()->getLabel()->setString("You Lose :[");
-        //		CCDirector::sharedDirector()->replaceScene(gameOverScene);
-        
-	}
-	else if (sprite->getTag() == 2) // projectile
-	{
-		_projectiles->removeObject(sprite);
-	}
+    }
+
+    if( 10 == _projectilesMissed )
+    {
+		GameOverScene *gameOverScene = GameOverScene::create();
+        gameOverScene->getLayer()->getLabel()->setString("You Lose :[");
+        CCDirector::sharedDirector()->replaceScene(gameOverScene);
+    }
+
+}
+
+void HelloWorld::projectileMoveFinished(CCNode* sender)
+{
+	CCSprite *sprite = (CCSprite *)sender;
+	this->removeChild(sprite, true);
+    
+    _projectiles->removeObject(sprite);
+
 }
 
 void HelloWorld::gameLogic(float dt)
@@ -265,11 +275,10 @@ void HelloWorld::ccTouchesEnded(CCSet* touches, CCEvent* event)
 	projectile->runAction( CCSequence::create(
                                               CCMoveTo::create(realMoveDuration, realDest),
                                               CCCallFuncN::create(this,
-                                                                  callfuncN_selector(HelloWorld::spriteMoveFinished)),
+                                                                  callfuncN_selector(HelloWorld::projectileMoveFinished)),
                                               NULL) );
     
 	// Add to projectiles array
-	projectile->setTag(2);
 	_projectiles->addObject(projectile);
     
     
@@ -331,6 +340,7 @@ void HelloWorld::updateGame(float dt)
 			_targets->removeObject(target);
             
             //add hit logic here
+            target->setTag(2);
             target->stopAllActions();
             CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("a~.mp3");
             
@@ -345,16 +355,15 @@ void HelloWorld::updateGame(float dt)
             target->runAction( CCSequence::create(
                                    CCRepeat::create( animate,3 ),
                                    CCCallFuncN::create(this,
-                                       callfuncN_selector(HelloWorld::spriteMoveFinished)),
+                                       callfuncN_selector(HelloWorld::targetMoveFinished)),
                                    NULL) );
-			//this->removeChild(target, true);
             
 			_projectilesDestroyed++;
-			if (_projectilesDestroyed >= 50000000)
+			if (_projectilesDestroyed >= 10)
 			{
-//				GameOverScene *gameOverScene = GameOverScene::create();
-//				gameOverScene->getLayer()->getLabel()->setString("You Win!");
-//				CCDirector::sharedDirector()->replaceScene(gameOverScene);
+				GameOverScene *gameOverScene = GameOverScene::create();
+				gameOverScene->getLayer()->getLabel()->setString("You Win!");
+				CCDirector::sharedDirector()->replaceScene(gameOverScene);
 			}
             updateResultMsg();
 		}
