@@ -67,7 +67,9 @@ bool HelloWorld::init()
 
     // position the sprite on the center of the screen
     pSprite->setPosition( ccp(size.width/2, size.height/2) );
-
+    pSprite->setScaleX(size.width/pSprite->getContentSize().width);
+    pSprite->setScaleY(size.height/pSprite->getContentSize().height);
+    
     // add the sprite as a child to this layer
     this->addChild(pSprite, 0);
     
@@ -138,6 +140,25 @@ void HelloWorld::addTarget()
 	int rangeDuration = maxDuration - minDuration;
 	// srand( TimGetTicks() );
 	int actualDuration = ( rand() % rangeDuration ) + minDuration;
+    
+    
+    CCSpriteFrame *frame0 = CCSpriteFrame::create("Target0.png", CCRectMake(0, 0, 54, 80));
+    CCSpriteFrame *frame1 = CCSpriteFrame::create("Target1.png", CCRectMake(0, 0, 54, 80));
+    CCArray *animFrames = new CCArray(6);
+    animFrames->addObject(frame0);
+    animFrames->addObject(frame1);
+    CCAnimation *animation  = CCAnimation::createWithSpriteFrames(animFrames, 0.2f);
+    //最后根据动画模板创建动画
+    CCAnimate *animate = CCAnimate::create(animation);
+    //定义一个动作 让飞龙 CCJUMPto  高度是10为  飞行4次
+    CCActionInterval* seq = (CCActionInterval*)(CCSequence::create(
+                                                                   CCJumpTo::create(2.0f,CCPointMake(200,300),10,4),
+                                                                   NULL) );
+    //如果2个动作在一个总动作里 那么只会执行完一个再执行另一个
+    //所以这分别定义2个动作 让飞行和前进同时发生 边飞边播放动画
+    //CCRepeatForever永远重复该动作 于是你看见飞龙不停的飞啊飞
+    //target->runAction(CCRepeatForever::create( seq ) );
+    target->runAction(CCRepeatForever::create( animate ) );
     
 	// Create the actions
 	CCFiniteTimeAction* actionMove = CCMoveTo::create( (float)actualDuration,

@@ -715,10 +715,10 @@
 		9EEED93A17D3A81000F3E1EE /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		9EEED93C17D3A81000F3E1EE /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
 		9EEED93D17D3A81000F3E1EE /* HelloWorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
-		9EEED94417D3A92100F3E1EE /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
-		9EEED94617D3A93200F3E1EE /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-114.png"; sourceTree = "<group>"; };
-		9EEED94817D3A94700F3E1EE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		9EEED94A17D3A96600F3E1EE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9EEED94417D3A92100F3E1EE /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-57.png"; path = "../Icon-57.png"; sourceTree = "<group>"; };
+		9EEED94617D3A93200F3E1EE /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-114.png"; path = "../Icon-114.png"; sourceTree = "<group>"; };
+		9EEED94817D3A94700F3E1EE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		9EEED94A17D3A96600F3E1EE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		9EEED97017D3AA9A00F3E1EE /* biubiu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = biubiu.mp3; path = Resources/biubiu.mp3; sourceTree = "<group>"; };
 		9EEED97117D3AA9A00F3E1EE /* Default 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default 2.png"; path = "Resources/Default 2.png"; sourceTree = "<group>"; };
 		9EEED97217D3AA9A00F3E1EE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -766,10 +766,6 @@
 		9EEED64E17D3A80B00F3E1EE = {
 			isa = PBXGroup;
 			children = (
-				9EEED94A17D3A96600F3E1EE /* Default.png */,
-				9EEED94817D3A94700F3E1EE /* Default@2x.png */,
-				9EEED94617D3A93200F3E1EE /* Icon-114.png */,
-				9EEED94417D3A92100F3E1EE /* Icon-57.png */,
 				9EEED66A17D3A80B00F3E1EE /* pro_agame */,
 				9EEED65917D3A80B00F3E1EE /* Frameworks */,
 				9EEED65817D3A80B00F3E1EE /* Products */,
@@ -814,6 +810,10 @@
 		9EEED66B17D3A80B00F3E1EE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9EEED94A17D3A96600F3E1EE /* Default.png */,
+				9EEED94417D3A92100F3E1EE /* Icon-57.png */,
+				9EEED94617D3A93200F3E1EE /* Icon-114.png */,
+				9EEED94817D3A94700F3E1EE /* Default@2x.png */,
 				9EEED99217D3BBA700F3E1EE /* Player_l.png */,
 				9EEED99317D3BBA700F3E1EE /* Target_l.png */,
 				9EEED99417D3BBA700F3E1EE /* Target0.png */,
@@ -2194,6 +2194,7 @@
 				9EEED94317D3A81000F3E1EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
