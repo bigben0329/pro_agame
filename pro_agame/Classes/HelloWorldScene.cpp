@@ -77,7 +77,7 @@ bool HelloWorld::init()
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     
-    CCSprite *player = CCSprite::create("Player.png", CCRectMake(0, 0, 27, 40) );
+    CCSprite *player = CCSprite::create("Player_l.png", CCRectMake(0, 0, 54, 80) );
     
     player->setPosition( ccp(origin.x + player->getContentSize().width/2,
                              origin.y + visibleSize.height/2) );
@@ -115,7 +115,7 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
 // cpp with cocos2d-x
 void HelloWorld::addTarget()
 {
-	CCSprite *target = CCSprite::create("Target.png", CCRectMake(0,0,27,40) );
+	CCSprite *target = CCSprite::create("Target_l.png", CCRectMake(0,0,54,80) );
     
 	// Determine where to spawn the target along the Y axis
 	CCSize winSize = CCDirector::sharedDirector()->getVisibleSize();
