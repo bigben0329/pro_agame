@@ -11,6 +11,10 @@
 		9ED40C3217D4C47000974FDB /* sound2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ED40C3017D4C47000974FDB /* sound2.png */; };
 		9ED40C3417D4ED5800974FDB /* a~.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9ED40C3317D4ED5800974FDB /* a~.mp3 */; };
 		9ED40C3617D4EFAF00974FDB /* backgroundmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9ED40C3517D4EFAF00974FDB /* backgroundmusic.mp3 */; };
+		9ED40C3917D4F5BF00974FDB /* Target2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ED40C3717D4F5BF00974FDB /* Target2.png */; };
+		9ED40C3A17D4F5BF00974FDB /* Target3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ED40C3817D4F5BF00974FDB /* Target3.png */; };
+		9ED40C3D17D4F89F00974FDB /* Player_l0.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ED40C3B17D4F89F00974FDB /* Player_l0.png */; };
+		9ED40C3E17D4F89F00974FDB /* Player_l1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ED40C3C17D4F89F00974FDB /* Player_l1.png */; };
 		9EEED65B17D3A80B00F3E1EE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EEED65A17D3A80B00F3E1EE /* QuartzCore.framework */; };
 		9EEED65D17D3A80B00F3E1EE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EEED65C17D3A80B00F3E1EE /* OpenGLES.framework */; };
 		9EEED65F17D3A80B00F3E1EE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EEED65E17D3A80B00F3E1EE /* OpenAL.framework */; };
@@ -255,6 +259,10 @@
 		9ED40C3017D4C47000974FDB /* sound2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sound2.png; path = Resources/sound2.png; sourceTree = "<group>"; };
 		9ED40C3317D4ED5800974FDB /* a~.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "a~.mp3"; path = "Resources/a~.mp3"; sourceTree = "<group>"; };
 		9ED40C3517D4EFAF00974FDB /* backgroundmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = backgroundmusic.mp3; path = Resources/backgroundmusic.mp3; sourceTree = "<group>"; };
+		9ED40C3717D4F5BF00974FDB /* Target2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Target2.png; path = Resources/Target2.png; sourceTree = "<group>"; };
+		9ED40C3817D4F5BF00974FDB /* Target3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Target3.png; path = Resources/Target3.png; sourceTree = "<group>"; };
+		9ED40C3B17D4F89F00974FDB /* Player_l0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Player_l0.png; path = Resources/Player_l0.png; sourceTree = "<group>"; };
+		9ED40C3C17D4F89F00974FDB /* Player_l1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Player_l1.png; path = Resources/Player_l1.png; sourceTree = "<group>"; };
 		9EEED65717D3A80B00F3E1EE /* pro_agame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pro_agame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EEED65A17D3A80B00F3E1EE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9EEED65C17D3A80B00F3E1EE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -816,6 +824,10 @@
 		9EEED66B17D3A80B00F3E1EE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9ED40C3B17D4F89F00974FDB /* Player_l0.png */,
+				9ED40C3C17D4F89F00974FDB /* Player_l1.png */,
+				9ED40C3717D4F5BF00974FDB /* Target2.png */,
+				9ED40C3817D4F5BF00974FDB /* Target3.png */,
 				9ED40C3517D4EFAF00974FDB /* backgroundmusic.mp3 */,
 				9ED40C3317D4ED5800974FDB /* a~.mp3 */,
 				9ED40C2F17D4C47000974FDB /* sound.png */,
@@ -1875,6 +1887,10 @@
 				9ED40C3217D4C47000974FDB /* sound2.png in Resources */,
 				9ED40C3417D4ED5800974FDB /* a~.mp3 in Resources */,
 				9ED40C3617D4EFAF00974FDB /* backgroundmusic.mp3 in Resources */,
+				9ED40C3917D4F5BF00974FDB /* Target2.png in Resources */,
+				9ED40C3A17D4F5BF00974FDB /* Target3.png in Resources */,
+				9ED40C3D17D4F89F00974FDB /* Player_l0.png in Resources */,
+				9ED40C3E17D4F89F00974FDB /* Player_l1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

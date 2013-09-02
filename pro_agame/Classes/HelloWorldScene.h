@@ -29,6 +29,7 @@ public:
     
     
 protected:
+    cocos2d::CCSprite *_player;
 	cocos2d::CCArray *_targets;
 	cocos2d::CCArray *_projectiles;
     cocos2d::CCLabelTTF* _pLabel;

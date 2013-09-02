@@ -94,10 +94,10 @@ bool HelloWorld::init()
     CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     
-    CCSprite *player = CCSprite::create("Player_l.png", CCRectMake(0, 0, 54, 80) );
-    player->setPosition( ccp(origin.x + player->getContentSize().width/2,
+    _player = CCSprite::create("Player_l.png", CCRectMake(0, 0, 108, 160) );
+    _player->setPosition( ccp(origin.x + _player->getContentSize().width/2,
                              origin.y + visibleSize.height/2) );
-    this->addChild(player);
+    this->addChild(_player);
     
     this->schedule( schedule_selector(HelloWorld::gameLogic), 1.0 );
     this->setTouchEnabled(true);
@@ -140,7 +140,7 @@ void HelloWorld::menuSoundCallback(CCObject* pSender)
 // cpp with cocos2d-x
 void HelloWorld::addTarget()
 {
-	CCSprite *target = CCSprite::create("Target_l.png", CCRectMake(0,0,54,80) );
+	CCSprite *target = CCSprite::create("Target0.png", CCRectMake(0,0,108,160) );
     
 	// Determine where to spawn the target along the Y axis
 	CCSize winSize = CCDirector::sharedDirector()->getVisibleSize();
@@ -165,8 +165,8 @@ void HelloWorld::addTarget()
 	int actualDuration = ( rand() % rangeDuration ) + minDuration;
     
     
-    CCSpriteFrame *frame0 = CCSpriteFrame::create("Target0.png", CCRectMake(0, 0, 54, 80));
-    CCSpriteFrame *frame1 = CCSpriteFrame::create("Target1.png", CCRectMake(0, 0, 54, 80));
+    CCSpriteFrame *frame0 = CCSpriteFrame::create("Target0.png", CCRectMake(0, 0, 108,160));
+    CCSpriteFrame *frame1 = CCSpriteFrame::create("Target1.png", CCRectMake(0, 0, 108,160));
     CCArray *animFrames = new CCArray(6);
     animFrames->addObject(frame0);
     animFrames->addObject(frame1);
@@ -272,6 +272,20 @@ void HelloWorld::ccTouchesEnded(CCSet* touches, CCEvent* event)
 	projectile->setTag(2);
 	_projectiles->addObject(projectile);
     
+    
+    //add a player animate
+    CCSpriteFrame *frame0 = CCSpriteFrame::create("Player_l0.png", CCRectMake(0, 0, 108,160));
+    CCSpriteFrame *frame1 = CCSpriteFrame::create("Player_l1.png", CCRectMake(0, 0, 108,160));
+    CCArray *animFrames = new CCArray(2);
+    animFrames->addObject(frame0);
+    animFrames->addObject(frame1);
+    CCAnimation *animation  = CCAnimation::createWithSpriteFrames(animFrames, 0.2f);
+    CCAnimate *animate = CCAnimate::create(animation);
+    _player->runAction( CCSequence::create(
+                                          CCRepeat::create( animate,1 ),
+                                          NULL) );
+
+    
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("biubiu.mp3");
 }
 
@@ -317,10 +331,23 @@ void HelloWorld::updateGame(float dt)
 			_targets->removeObject(target);
             
             //add hit logic here
-            
+            target->stopAllActions();
             CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("a~.mp3");
             
-			this->removeChild(target, true);
+            CCSpriteFrame *frame0 = CCSpriteFrame::create("Target2.png", CCRectMake(0, 0, 108,160));
+            CCSpriteFrame *frame1 = CCSpriteFrame::create("Target3.png", CCRectMake(0, 0, 108,160));
+            CCArray *animFrames = new CCArray(2);
+            animFrames->addObject(frame0);
+            animFrames->addObject(frame1);
+            CCAnimation *animation  = CCAnimation::createWithSpriteFrames(animFrames, 0.2f);
+            CCAnimate *animate = CCAnimate::create(animation);
+            
+            target->runAction( CCSequence::create(
+                                   CCRepeat::create( animate,3 ),
+                                   CCCallFuncN::create(this,
+                                       callfuncN_selector(HelloWorld::spriteMoveFinished)),
+                                   NULL) );
+			//this->removeChild(target, true);
             
 			_projectilesDestroyed++;
 			if (_projectilesDestroyed >= 50000000)
