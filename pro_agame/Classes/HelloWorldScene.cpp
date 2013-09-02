@@ -45,6 +45,21 @@ bool HelloWorld::init()
     CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
     pMenu->setPosition( CCPointZero );
     this->addChild(pMenu, 1);
+    
+    
+    // add a "sound" icon to operate the sound
+    CCMenuItemImage *pSoundItem = CCMenuItemImage::create(
+                                                          "sound.png",
+                                                          "sound2.png",
+                                                          this,
+                                                          menu_selector(HelloWorld::menuSoundCallback) );
+    pSoundItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, CCDirector::sharedDirector()->getWinSize().height - 20) );
+    
+    // create menu, it's an autorelease object
+    CCMenu* pSoundMenu = CCMenu::create(pSoundItem, NULL);
+    pSoundMenu->setPosition( CCPointZero );
+    this->addChild(pSoundMenu, 1);
+
 
     /////////////////////////////
     // 3. add your codes below...
@@ -80,13 +95,11 @@ bool HelloWorld::init()
     CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
     
     CCSprite *player = CCSprite::create("Player_l.png", CCRectMake(0, 0, 54, 80) );
-    
     player->setPosition( ccp(origin.x + player->getContentSize().width/2,
                              origin.y + visibleSize.height/2) );
     this->addChild(player);
     
     this->schedule( schedule_selector(HelloWorld::gameLogic), 1.0 );
-    
     this->setTouchEnabled(true);
     
     _targets = new CCArray;
@@ -96,11 +109,8 @@ bool HelloWorld::init()
     // see http://www.cocos2d-x.org/boards/6/topics/1478
     this->schedule( schedule_selector(HelloWorld::updateGame) );
     
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("summer.mp3", true);
-    
-    
-    
-    
+    _bPlayBackgroundMusic = true;
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("backgroundmusic.mp3", true);
     return true;
 }
 
@@ -111,6 +121,19 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+void HelloWorld::menuSoundCallback(CCObject* pSender)
+{
+    if (_bPlayBackgroundMusic) {
+        _bPlayBackgroundMusic = false;
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    }
+    else
+    {
+        _bPlayBackgroundMusic = true;
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+    }
 }
 
 
@@ -292,6 +315,11 @@ void HelloWorld::updateGame(float dt)
 		{
 			CCSprite *target = dynamic_cast<CCSprite*>(jt);
 			_targets->removeObject(target);
+            
+            //add hit logic here
+            
+            CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect("a~.mp3");
+            
 			this->removeChild(target, true);
             
 			_projectilesDestroyed++;
